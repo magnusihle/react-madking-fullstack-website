@@ -1,0 +1,42 @@
+/*Fab button*/
+.fab-button {
+    height: 0 !;
+    width: 0 !important;
+    outline: 0px !important;
+    
+    z-index: 1001;
+    background-color: transparent !important;
+    position: fixed !important;
+    bottom: 1em !important;
+    right: 1em !important;
+    left: auto !important;
+    top: auto !important;
+  }
+  
+  
+  .fab-button.active{
+    height: 4em !important;
+    width: 4em !important;
+    border-radius: 100%;
+    background: transparent;
+    color: white;
+    background-color: white !important;
+    transition: var(--media-transition) ease;
+    animation: fadeIn linear var(--media-transition) ;
+  
+  }
+  
+  .fa-arrow-up{
+    height: 100%;
+    width: 100%;
+    font-size: 2.5rem;
+    display: flex;
+    transition: var(--media-transition) ease;
+    flex-direction: column;
+    animation: fadeIn linear var(--media-transition);
+  
+  }
+  
+  .hidefab{
+    color: transparent;
+  }
