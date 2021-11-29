@@ -13,20 +13,41 @@ import "./homepage.css";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import useWindowDimensions from "../../reusableFunctions/Functions";
 import Test from "./Test";
+import Fab from "@material-ui/core/Fab";
+
 
 const Container = styled.div``;
 
 const Homepage = () => {
+    const [showFab, setFab] = useState(false);
+
     const { height, width } = useWindowDimensions();
 
-    console.log(window.screenY);
+    const makeFABVisible = () => {
+        if (window.scrollY >= 100) {
+            setFab(true);
+
+            console.log("Show fab")
+        } else {
+            setFab(false);
+            console.log("Hide fab")
+        }
+    }
+    window.addEventListener("scroll", makeFABVisible);
 
     return (
         <Container>
 
-            <Fab>
-                <Link to="hero" spy={true} smooth={true} offset={-100} duration={300}>
-                    <AiOutlineArrowUp fontSize="3em" color="#214554" />
+            <Fab className={showFab ? "fab-button active" : "fab-button"} color="primary" aria-label="add">
+                <Link
+                    to="hero"
+                    className={"fab-link"}
+                    spy={true}
+                    smooth={true}
+                    offset={-100}
+                    duration={400}
+                >
+                    {showFab && <AiOutlineArrowUp className="fa-arrow-up" color="#214554" fontSize="3rem" />}
                 </Link>
             </Fab>
 
@@ -44,14 +65,4 @@ const Homepage = () => {
 
 export default Homepage;
 
-const Fab = styled.div`
-  display: flex;
-  position: fixed;
-  z-index: 100;
-  height: 3em;
-  width: 3em;
-  bottom: 0.5em;
-  right: 0.51em;
-  border-radius: 50%;
-  background-color: white;
-`;
+

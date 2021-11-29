@@ -16,7 +16,6 @@ export const validateEmail = (email, errorMessage) => {
     }
     else {
         errorMessage = "Feil i epost input..";
-        console.log("Epostvalidering: ", errorMessage);
         return false;
     }
 
@@ -30,7 +29,6 @@ export const validatePhonenumber = (number, errorMessage) => {
     }
     else {
         errorMessage = "Telefonnummer er ikke gyldig.. må være 99494039 eller lignende";
-        console.log("mobilnummer validering: ", errorMessage);
 
         return false;
     }

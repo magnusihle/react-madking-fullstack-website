@@ -10,6 +10,7 @@ const Contact = () => {
     title: "",
     message: "",
     confirm: "",
+    error: false
   });
 
   //Request message state => the userrequest that will get validated and sent to our mailbox
@@ -36,6 +37,7 @@ const Contact = () => {
       setMessageState({
         ...messageState,
         confirm: "Din melding er nå sendt. Vi vil svare så raskt vi kan!",
+        error: false
       });
     } else {
       setMessageState({
@@ -43,7 +45,8 @@ const Contact = () => {
         phonenumber: "",
         title: "",
         message: "",
-        confirm: "",
+        confirm: "Feil. Du må skrive inn gyldig data i alle feltene. ",
+        error: true
       });
     }
   };
@@ -95,7 +98,9 @@ const Contact = () => {
         >
           Send
         </Button>
-        <ConfirmationMessage>{messageState.confirm}</ConfirmationMessage>
+        {!messageState.error && <ConfirmationMessage>{messageState.confirm}</ConfirmationMessage>}
+        {messageState.error && <ErrorMessage>{messageState.confirm}</ErrorMessage>}
+
       </ContactForm>
     </Container>
   );

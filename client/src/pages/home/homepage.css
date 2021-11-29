@@ -21,8 +21,8 @@
     background: transparent;
     color: white;
     background-color: white !important;
-    transition: var(--media-transition) ease;
-    animation: fadeIn linear var(--media-transition) ;
+    transition: .8s ease;
+    animation: fadeIn linear .8s ;
   
   }
   
@@ -31,12 +31,17 @@
     width: 100%;
     font-size: 2.5rem;
     display: flex;
-    transition: var(--media-transition) ease;
+    transition:.8s  ease;
     flex-direction: column;
-    animation: fadeIn linear var(--media-transition);
+    animation: fadeIn linear .8s ;
   
   }
   
   .hidefab{
     color: transparent;
+  }
+
+  @keyframes fadeIn {
+    0% {opacity:0.2;}
+    100% {opacity:1;}
   }
