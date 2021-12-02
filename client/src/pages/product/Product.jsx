@@ -3,26 +3,37 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { musicCarouselleDummyData } from "../../data/data";
 import useWindowDimensions from "../../reusableFunctions/Functions";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/cartRedux";
+
 
 const Product = ({ item }) => {
   const { height, width } = useWindowDimensions();
-
   const location = useLocation();
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState({});
   const id = parseInt(location.pathname.split("/")[2]);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     const getProduct = () => {
       try {
         const res = musicCarouselleDummyData.filter((x) => x.id === id);
         console.log("Result: ", res);
-        setProduct(res);
+        setProduct(res[0]);
       } catch (e) {
         console.log(e);
       }
     };
     getProduct();
   }, [id]);
+
+  const handleClick = () => {
+    dispatch(
+      addProduct({ ...product })
+    );
+  };
+
 
   return (
     <Container>
@@ -47,7 +58,7 @@ const Product = ({ item }) => {
         <ProductPrice>
           Pris: {musicCarouselleDummyData[id - 1].price} Kr
         </ProductPrice>
-        <Button backgroundcolor="#3E768C" color="white" hover="#558ba0">
+        <Button backgroundcolor="#3E768C" color="white" hover="#558ba0" onClick={handleClick}>
           Legg til i handleliste
         </Button>{" "}
       </ProductInformationContainer>

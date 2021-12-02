@@ -1,28 +1,26 @@
 import styled from "styled-components";
-import { cartData } from "../../data/data";
 import { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { removeProduct, resetCart } from "../../redux/cartRedux";
+import { useDispatch } from "react-redux";
+
 
 const Order = () => {
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [orderList, setOrderList] = useState(cartData);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
-  const removeItemFromOrder = (id) => {
-    setOrderList(orderList.filter(x => x.id !== id));
-  }
+  const handleDelete = (product) => {
+    dispatch(
+      removeProduct(product)
+    );
+  };
 
-  useEffect(() => {
-    const getAndSetTotalPriceOfOrder = () => {
-      let price = 0;
-      for (let i = 0; i < orderList.length; i++) {
-        price += orderList[i].price;
-      }
-      setTotalPrice(price);
-    }
-
-    getAndSetTotalPriceOfOrder()
-  }, [totalPrice])
-
+  const handleResetCart = () => {
+    dispatch(
+      resetCart()
+    );
+  };
 
   return (
     <Container>
@@ -30,8 +28,8 @@ const Order = () => {
         <Title>Order</Title>
 
         <OrderDetailsContainer>
-          {orderList.map((item, index) => (
-            <OrderDetails key={item.id}>
+          {cart.products.map((item, index) => (
+            <OrderDetails key={index}>
               <Image src={item.img} />
               <Detail>
                 <DetailTitle>Tittel</DetailTitle>
@@ -42,18 +40,24 @@ const Order = () => {
                 <DetailInfo> {item.price} Kr</DetailInfo>
               </Detail>
               <DeleteArea>
-                <AiOutlineDelete color="red" fontSize="1.5rem" onClick={() => removeItemFromOrder(item.id)} />
+                <AiOutlineDelete color="red" fontSize="1.5rem" onClick={() => handleDelete(item)} />
               </DeleteArea>
             </OrderDetails>
           ))}
         </OrderDetailsContainer>
 
         <OrderSummary>
-          <SummaryPrice>Total pris: {totalPrice} Kr</SummaryPrice>
+          <SummaryPrice>Total pris:  {cart.total} Kr</SummaryPrice>
         </OrderSummary>
-        <Button backgroundcolor="#3E768C" color="white" hover="#558ba0">
+        <Buttons>     <Button backgroundcolor="#3E768C" color="white" hover="#558ba0">
           Sjekk Ut
-        </Button>            </OrderContainer>
+        </Button>
+          <Button backgroundcolor="red" color="white" hover="#ff7b7b" onClick={() => handleResetCart()}>
+            Reset
+          </Button></Buttons>
+
+
+      </OrderContainer>
     </Container>
   );
 };
@@ -163,6 +167,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 `;
+
+const Buttons = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+`;
+
 
 const Button = styled.button`
   padding: 14px 18px;

@@ -26,11 +26,8 @@ const Homepage = () => {
     const makeFABVisible = () => {
         if (window.scrollY >= 100) {
             setFab(true);
-
-            console.log("Show fab")
         } else {
             setFab(false);
-            console.log("Hide fab")
         }
     }
     window.addEventListener("scroll", makeFABVisible);

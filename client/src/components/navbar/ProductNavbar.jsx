@@ -5,11 +5,12 @@ import { mobile } from "../../reusableFunctions/responsive";
 import useWindowDimensions from "../../reusableFunctions/Functions";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-
+import { useSelector } from "react-redux";
 const ProductNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { height, width } = useWindowDimensions();
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState(0);
+  const quantity = useSelector(state => state.cart.quantity);
 
   return (
     <Nav>
@@ -33,7 +34,11 @@ const ProductNavbar = () => {
           {" "}
           <MenuLink>Hjem</MenuLink>
         </Link>
-
+        <Link
+          to="/productlist">
+          {" "}
+          <MenuLink>Våre Beats</MenuLink>
+        </Link>
 
         <Link
           to="/login">
@@ -43,7 +48,7 @@ const ProductNavbar = () => {
 
         <Link
           to="/orders"
-        > <MenuLink><AiOutlineShoppingCart fontSize="2rem" />({numberOfItemsInCart})</MenuLink>
+        > <MenuLink><AiOutlineShoppingCart fontSize="1.2rem" />({quantity})</MenuLink>
 
         </Link>
       </Menu>

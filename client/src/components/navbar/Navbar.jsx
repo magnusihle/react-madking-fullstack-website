@@ -6,6 +6,7 @@ import useWindowDimensions from "../../reusableFunctions/Functions";
 import { Link } from "react-scroll";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link as DomLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
@@ -14,6 +15,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { height, width } = useWindowDimensions();
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState(0);
+  const quantity = useSelector(state => state.cart.quantity);
+
 
   return (
     <Nav>
@@ -66,7 +69,7 @@ const Navbar = () => {
 
         <DomLink
           to="orders/"
-        > <MenuLink href=""><AiOutlineShoppingCart fontSize="2rem" />({numberOfItemsInCart})</MenuLink>
+        > <MenuLink href=""><AiOutlineShoppingCart fontSize="1.2rem" />({quantity})</MenuLink>
 
         </DomLink>
       </Menu>
