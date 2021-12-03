@@ -22,6 +22,8 @@ const Products = ({ item }) => {
 
   return (
     <Container>
+      <SectionTitle>   Alle Våre Produkter</SectionTitle>
+
       <ProductListContainer>
         {musicCarouselleDummyData.map((prod, index) => (
           < ProductContainer key={index}>
@@ -55,7 +57,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   padding:5em 1em 1em 1em;
   min-height: 80vh;
   height: auto;
@@ -69,8 +71,10 @@ const Container = styled.div`
 
 const ProductListContainer = styled.div`
   display: flex;
+  justify-content: center;
   padding: 20px;
   flex-wrap: wrap;
+  max-width: 95em;
 
 `;
 
@@ -84,6 +88,8 @@ const ProductContainer = styled.div`
   margin: 5px;
   padding: 1em;
   min-width: 20em;
+  max-width: 30em;
+  max-height: 40em;
   border-radius: 1em;
   height: auto;
   background-color: #00a27f4b;
@@ -97,6 +103,12 @@ background-color: var(--color-1);
   }
 `;
 
+const SectionTitle = styled.h1`
+font-size: 3rem;
+color: black;
+padding-top: 1em;
+`;
+
 const Title = styled.h1`
 font-size: 1.5rem;
 color: white;
@@ -105,7 +117,7 @@ color: white;
 
 const Image = styled.img`
 width: 100%;
-height: 80%;
+height: 70%;
 `;
 
 const Price = styled.p`
