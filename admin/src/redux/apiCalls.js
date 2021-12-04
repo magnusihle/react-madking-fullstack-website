@@ -1,4 +1,5 @@
-import { publicRequest, userRequest } from "../RequestMethods";
+import { loginFailure, loginStart, loginSuccess } from "./userRedux";
+import { publicRequest, userRequest } from "../requestMethods";
 import {
     getProductFailure,
     getProductStart,
@@ -14,7 +15,15 @@ import {
     addProductSuccess,
 } from "./productRedux";
 
-
+export const login = async (dispatch, user) => {
+    dispatch(loginStart());
+    try {
+        const res = await publicRequest.post("/auth/login", user);
+        dispatch(loginSuccess(res.data));
+    } catch (err) {
+        dispatch(loginFailure());
+    }
+};
 
 export const getProducts = async (dispatch) => {
     dispatch(getProductStart());

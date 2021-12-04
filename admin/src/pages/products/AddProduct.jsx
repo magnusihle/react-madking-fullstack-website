@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { addProduct } from "../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 const AddProduct = () => {
     const [userInput, setUserInput] = useState({
@@ -9,6 +11,7 @@ const AddProduct = () => {
         category: [],
         price: "",
     });
+    const dispatch = useDispatch();
 
 
 
@@ -22,9 +25,16 @@ const AddProduct = () => {
     };
 
 
+    // const handleClick = (e) => {
+    //     e.preventDefault();
+    //     console.log(userInput);
+    // }
+
+
+
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(userInput);
+        addProduct(userInput, dispatch);
     }
 
 
