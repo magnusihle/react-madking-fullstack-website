@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Squash as Hamburger } from 'hamburger-react'
-import { mobile } from "../../reusableFunctions/responsive";
-import useWindowDimensions from "../../reusableFunctions/Functions";
-import { Link } from "react-scroll";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import useWindowDimensions from "../../../reusableFunctions/Functions";
 import { Link as DomLink } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/userRedux';
+import { logout } from '../../../redux/userRedux';
+import { useDispatch } from "react-redux";
+
 
 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { height, width } = useWindowDimensions();
-  const quantity = useSelector(state => state.cart.quantity);
-  const user = useSelector(state => state.user.currentUser);
+
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -37,56 +35,21 @@ const Navbar = () => {
 
 
       <Menu isOpen={isOpen}>
-        <Link
-          to="about"
-          className="nav-logo"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={300}
-        > <MenuLink href="">Om oss</MenuLink>
-        </Link>
-
-        <Link
-          to="beats"
-          className="nav-logo"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={300}
-        > <MenuLink href="">Våre Beats</MenuLink>
-        </Link>
-        <Link
-          to="contact"
-          className="nav-logo"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={300}
-        > <MenuLink href="">Kontakt Oss</MenuLink>
-
-        </Link>
-
-
-        {!user ? (<DomLink
-          to="/login">
+        <DomLink
+          to="/">
           {" "}
-          <MenuLink href="">Logg Inn</MenuLink>
-        </DomLink>) : (
-          <MenuLink onClick={handleLogout}>Logg Ut</MenuLink>
-        )}
-
-        {user && <DomLink
-          to="/admin">
-          <MenuLink href="">Admin</MenuLink>
-        </DomLink>}
-
+          <MenuLink href="">Hjem</MenuLink>
+        </DomLink>
 
         <DomLink
-          to="orders/"
-        > <MenuLink href=""><AiOutlineShoppingCart fontSize="1.2rem" />({quantity})</MenuLink>
-
+          to="/producthandler">
+          {" "}
+          <MenuLink href="">Produkter</MenuLink>
         </DomLink>
+        <DomLink
+          to="/">
+          {" "}
+          <MenuLink onClick={handleLogout}>Logg Ut</MenuLink>      </DomLink>
       </Menu>
     </Nav>
   );
@@ -163,4 +126,6 @@ const Menu = styled.div`
     width: 100%;
   }
 `;
+
+
 

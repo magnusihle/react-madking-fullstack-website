@@ -1,33 +1,37 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/apiCalls';
+import { useNavigate } from "react-router-dom";
+import { loginFailure, loginSuccess } from "../../redux/userRedux";
+
 
 const Login = () => {
-    const [userInfo, setUserInfo] = useState({ username: "", password: "" })
+  const [username, setUsername] = useState({});
+  const [password, setPassword] = useState({});
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector(state => state.user)
 
 
-    const handleChange = (e) => {
-        e.preventDefault();
-        const value = e.target.value;
-        setUserInfo({ ...userInfo, [e.target.name]: value });
-    }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
 
 
-    const handleLogin = () => {
-        console.log("User: ", userInfo)
-    }
-
-    return (
-        <Container>
-            <LoginContainer>
-                <Title>Logg inn!</Title>
-                <Input type="text" name="username" placeholder="Brukernavn" onChange={handleChange} />
-                <Input type="password" name="password" placeholder="Passord" onChange={handleChange} />
-                <Button backgroundcolor="#3E768C" color="white" hover="#558ba0" onClick={handleLogin}>
-                    Log Inn
-                </Button>{" "}
-            </LoginContainer>
-        </Container>
-    );
+  return (
+    <Container>
+      <LoginContainer>
+        <Title>Logg inn!</Title>
+        <Input type="text" name="username" placeholder="Brukernavn" onChange={(e) => setUsername(e.target.value)} />
+        <Input type="password" name="password" placeholder="Passord" onChange={(e) => setPassword(e.target.value)} />
+        <Button backgroundcolor="#3E768C" color="white" hover="#558ba0" onClick={handleLogin} disabled={isFetching}>
+          Log Inn
+        </Button>{" "}
+        {error && <Error>Innlogging feilet..</Error>}
+      </LoginContainer>
+    </Container>
+  );
 };
 
 export default Login;
@@ -93,4 +97,16 @@ const Button = styled.button`
     border-radius: 0.5em;
     box-shadow: 0.2rem 0.2rem 0 0 rgba(255, 255, 255, 0.15);
   }
+
+  &:disabled{
+    background-color: gray;
+    cursor: not-allowed;
+
+  }
+`;
+
+
+const Error = styled.p`
+  font-size: 1.1rem;
+  color: red;
 `;

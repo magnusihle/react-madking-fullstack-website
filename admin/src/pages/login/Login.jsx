@@ -17,7 +17,7 @@ const Login = () => {
     return (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", flexDirection: "column" }}>
             <input style={{ padding: 10, marginBottom: 20 }} type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
-            <input style={{ padding: 10, marginBottom: 20 }} type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+            <input style={{ padding: 10, marginBottom: 20 }} type="password" placeholder="password" onChange={(e) => setUsername(e.target.value)} />
             <button style={{ padding: 10, width: "100px", }} onClick={handleClick}>Login</button>
 
         </div>

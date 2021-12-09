@@ -7,10 +7,16 @@ import Productpage from "./pages/product/Productpage";
 import Orderpage from "./pages/order/Orderpage";
 import Loginpage from "./pages/login/Loginpage";
 import ProductListPage from "./pages/productList/ProductListPage";
+import { useSelector } from "react-redux";
+import Adminpage from "./pages/admin/home/Adminpage";
+import AdminProductpage from "./pages/admin/products/AdminProductPage";
+
 
 
 
 const App = () => {
+  const user = useSelector(state => state.user.currentUser);
+
   return (
     <Router>
       <GlobalStyles />
@@ -19,8 +25,9 @@ const App = () => {
         <Route path="/products/:id" element={<Productpage />} />
         <Route path="/productlist/" element={<ProductListPage />} />
         <Route path="/orders/" element={<Orderpage />} />
-        <Route path="/login/" element={<Loginpage />} />
-
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Loginpage />} />
+        <Route path="/admin" element={<Adminpage />} />
+        <Route path="/producthandler" element={<AdminProductpage />} />
       </Routes>
     </Router >)
 }

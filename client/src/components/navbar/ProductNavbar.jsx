@@ -5,12 +5,20 @@ import { mobile } from "../../reusableFunctions/responsive";
 import useWindowDimensions from "../../reusableFunctions/Functions";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/userRedux';
+
+
 const ProductNavbar = () => {
+  const user = useSelector(state => state.user.currentUser);
   const [isOpen, setIsOpen] = useState(false);
   const { height, width } = useWindowDimensions();
-  const [numberOfItemsInCart, setNumberOfItemsInCart] = useState(0);
   const quantity = useSelector(state => state.cart.quantity);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  }
 
   return (
     <Nav>
@@ -40,11 +48,16 @@ const ProductNavbar = () => {
           <MenuLink>Våre Beats</MenuLink>
         </Link>
 
-        <Link
+        {!user ? (<Link
           to="/login">
           {" "}
           <MenuLink>Logg Inn</MenuLink>
-        </Link>
+        </Link>) : (
+          <MenuLink onClick={handleLogout}>Logg Ut</MenuLink>
+        )}
+
+
+
 
         <Link
           to="/orders"

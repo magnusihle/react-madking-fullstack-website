@@ -52,7 +52,6 @@ const Contact = () => {
     }
   };
 
-  console.log("Message objedt", messageState);
 
   return (
     <Container id="contact">
