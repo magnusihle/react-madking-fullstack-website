@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, getProducts, deleteProduct, updateProduct } from "../../../redux/apiCalls";
+import { getProducts, deleteProduct, updateProduct } from "../../../redux/apiCalls";
 import { publicRequest } from "../../../requestMethods";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from "../../../firebase"
 
 
-const ProductHandler = () => {
+const EditProduct = () => {
     const [userInput, setUserInput] = useState({
         title: "",
         img: "",
@@ -15,7 +15,6 @@ const ProductHandler = () => {
         categories: [],
         price: 0,
     });
-    const [productToEditId, setProductToEditId] = useState();
     const dispatch = useDispatch();
     // const products = useSelector((state) => state.product.products);
     const [products, setProducts] = useState([]);
@@ -44,7 +43,7 @@ const ProductHandler = () => {
     };
 
 
-    const handleAddNewProduct = (e) => {
+    const handleUpdateProduct = (e) => {
         e.preventDefault();
         console.log(userInput)
         // addProduct(userInput, dispatch)
@@ -81,7 +80,7 @@ const ProductHandler = () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     const product = { ...userInput, img: downloadURL };
                     console.log(product);
-                    addProduct(product, dispatch);
+                    // updateProduct(id, product, dispatch);
                 });
             }
         );
@@ -94,9 +93,7 @@ const ProductHandler = () => {
 
 
     const handleEdit = (prod) => {
-        setProductToEditId(prod._id)
-        console.log(productToEditId);
-
+        console.log(prod);
 
     }
 
@@ -118,11 +115,11 @@ const ProductHandler = () => {
 
     return (
         <Container>
-            <Title>Legg til, endre, slett produkter. </Title>
+            <Title>Endre produkter. </Title>
 
             <Form encType="multipart/form-data">
 
-                <FormTitle>Legg til nytt produkt</FormTitle>
+                <FormTitle>Endre produkt</FormTitle>
                 <Input type="text" name="title" placeholder="tittel.." onChange={(e) => handleChange(e)} />
                 <Input type="file" name="img" placeholder="bilde.." onChange={(e) => handleChange(e)} />
                 <Input type="text" name="description" placeholder="beskrivelse.." onChange={(e) => handleChange(e)} />
@@ -130,87 +127,21 @@ const ProductHandler = () => {
                 <Input type="text" name="price" placeholder="pris.." onChange={(e) => handleChange(e)} />
 
 
-                <Button backgroundcolor="#3E768C" color="white" hover="#558ba0" onClick={(e) => handleAddNewProduct(e)}>
-                    Legg Til
+                <Button backgroundcolor="#3E768C" color="white" hover="#558ba0" onClick={(e) => handleUpdateProduct(e)}>
+                    Oppdater
                 </Button>            </Form>
 
 
 
-            <Table>
-                <TBody>
-                    <TableRoW>
-                        <TableHead>Bilde</TableHead>
-                        <TableHead>Tittel</TableHead>
-                        <TableHead>Beskrivelse</TableHead>
-                        <TableHead>Kategorier</TableHead>
-                        <TableHead>Pris</TableHead>
-                        <TableHead>Endre/Slett</TableHead>
 
-                    </TableRoW>
-
-
-                    {products.map((prod, index) => (
-                        <TableRoW key={index}>
-                            <TableD><Image src={prod.img} /></TableD>
-                            <TableD>{prod.title}</TableD>
-                            <TableD>{prod.description}</TableD>
-                            <TableD>{prod.categories}</TableD>
-                            <TableD>{prod.price} kr</TableD>
-                            <TableD> <Buttons><Button backgroundcolor="green" color="white" hover="#4cbd35" onClick={() => handleEdit(prod)}>
-                                Endre
-                            </Button>
-                                <Button backgroundcolor="red" color="white" hover="#ed6c6c" onClick={() => handleDelete(prod)}>
-                                    Slett
-                                </Button></Buttons>  </TableD>
-
-                        </TableRoW>
-                    ))}
-                </TBody>
-            </Table>
 
         </Container>
     )
 }
 
-export default ProductHandler
+export default EditProduct
 
 
-const Table = styled.table`
-margin-top: 3em;
-width: 80%;
-
-`;
-
-const TBody = styled.tbody`
-
-`;
-
-
-const TableRoW = styled.tr`
-min-width: 100%;
-padding: 1em;
-
-`;
-
-const TableHead = styled.th`
-background-color: var(--color-1);
-color: white;
-padding: 1em;
-width: 100%;
-`;
-
-const TableD = styled.td`
-background-color: var(--color-4);
-color: white;
-padding: 1em;
-min-width: 8em;
-width: 100%;
-`;
-
-const Image = styled.img`
-max-width:  10em;
-max-height: 20em;
-`;
 
 
 
@@ -267,9 +198,3 @@ const Button = styled.button`
   }
 `;
 
-const Buttons = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: row;
-`;
