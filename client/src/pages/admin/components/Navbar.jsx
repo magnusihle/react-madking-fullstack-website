@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
 
   const dispatch = useDispatch();

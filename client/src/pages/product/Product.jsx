@@ -1,24 +1,32 @@
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { musicCarouselleDummyData } from "../../data/data";
 import useWindowDimensions from "../../reusableFunctions/Functions";
-import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartRedux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/apiCalls";
+
 
 
 const Product = ({ item }) => {
   const { height, width } = useWindowDimensions();
   const location = useLocation();
   const [product, setProduct] = useState({});
-  const id = parseInt(location.pathname.split("/")[2]);
+  const id = location.pathname.split("/")[2];
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
 
+  console.log("ID: ", id)
+
+
+  useEffect(() => {
+    getProducts(dispatch);
+  }, [dispatch]);
 
   useEffect(() => {
     const getProduct = () => {
       try {
-        const res = musicCarouselleDummyData.filter((x) => x.id === id);
+        const res = products.filter((x) => x._id === id);
         console.log("Result: ", res);
         setProduct(res[0]);
       } catch (e) {
@@ -35,28 +43,29 @@ const Product = ({ item }) => {
   };
 
 
+
   return (
     <Container>
       {width > 800 && (
         <ProductContainer>
           <ProductTitle color="white">
-            {musicCarouselleDummyData[id - 1].title}
+            {product.title}
           </ProductTitle>
-          <ProductImage src={musicCarouselleDummyData[id - 1].img} alt="test" />
+          <ProductImage src={product.img} alt="test" />
         </ProductContainer>
       )}
 
       {width < 800 && (
-        <ProductImage src={musicCarouselleDummyData[id - 1].img} alt="test" />
+        <ProductImage src={product.img} alt="test" />
       )}
 
       <ProductInformationContainer>
         <ProductTitle color="black">
-          {musicCarouselleDummyData[id - 1].title}
+          {product.title}
         </ProductTitle>
-        <ProductDesc>{musicCarouselleDummyData[id - 1].desc}</ProductDesc>
+        <ProductDesc>{product.description}</ProductDesc>
         <ProductPrice>
-          Pris: {musicCarouselleDummyData[id - 1].price} Kr
+          Pris: {product.price} Kr
         </ProductPrice>
         <Button backgroundcolor="#3E768C" color="white" hover="#558ba0" onClick={handleClick}>
           Legg til i handleliste

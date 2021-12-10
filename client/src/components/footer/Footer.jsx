@@ -1,12 +1,6 @@
 
 import styled from "styled-components";
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import InstagramIcon from '@mui/icons-material/Instagram';
-// import LinkedInIcon from '@mui/icons-material/LinkedIn';
-// import TwitterIcon from '@mui/icons-material/Twitter';
-// import RoomIcon from '@mui/icons-material/Room';
-// import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
-// import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+
 import { mobile } from "../../reusableFunctions/responsive";
 import { Link } from "react-scroll";
 
@@ -24,18 +18,7 @@ const Footer = () => {
           humour, or randomised words which don’t look even slightly believable.
         </Desc>
         <SocialContainer>
-          {/* <SocialIcon color="3B5999">
-            <FacebookIcon />
-          </SocialIcon>
-          <SocialIcon color="E4405F">
-            <InstagramIcon />
-          </SocialIcon>
-          <SocialIcon color="55ACEE">
-            <TwitterIcon />
-          </SocialIcon>
-          <SocialIcon color="E60023">
-            <LinkedInIcon />
-          </SocialIcon> */}
+
         </SocialContainer>
       </Left>
       <Center>
@@ -51,15 +34,7 @@ const Footer = () => {
       </Center>
       <Right>
         <Title>Våre betalingsløsninger</Title>
-        {/* <ContactItem>
-          <RoomIcon style={{ marginRight: "10px" }} /> 622 Dixie Path , South Tobinchester 98336
-        </ContactItem>
-        <ContactItem>
-          <PhoneIphoneIcon style={{ marginRight: "10px" }} /> +1 234 56 78
-        </ContactItem>
-        <ContactItem>
-          <AlternateEmailIcon style={{ marginRight: "10px" }} /> contact@lama.dev
-        </ContactItem> */}
+
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
     </Container>
@@ -94,17 +69,17 @@ const SocialContainer = styled.div`
   display: flex;
 `;
 
-const SocialIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: white;
-  background-color: #${(props) => props.color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-`;
+// const SocialIcon = styled.div`
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   color: white;
+//   background-color: #${(props) => props.color};
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-right: 20px;
+// `;
 
 const Center = styled.div`
   flex: 1;
@@ -139,11 +114,11 @@ const Right = styled.div`
   ${mobile({ backgroundColor: "#214554" })}
 `;
 
-const ContactItem = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-`;
+// const ContactItem = styled.div`
+//   margin-bottom: 20px;
+//   display: flex;
+//   align-items: center;
+// `;
 
 const Payment = styled.img`
     width: 50%;

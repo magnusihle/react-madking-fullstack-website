@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Squash as Hamburger } from "hamburger-react";
-import { mobile } from "../../reusableFunctions/responsive";
+// import { mobile } from "../../reusableFunctions/responsive";
 import useWindowDimensions from "../../reusableFunctions/Functions";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -12,7 +12,7 @@ import { logout } from '../../redux/userRedux';
 const ProductNavbar = () => {
   const user = useSelector(state => state.user.currentUser);
   const [isOpen, setIsOpen] = useState(false);
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const quantity = useSelector(state => state.cart.quantity);
   const dispatch = useDispatch();
 

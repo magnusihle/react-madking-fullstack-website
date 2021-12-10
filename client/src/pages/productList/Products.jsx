@@ -1,22 +1,28 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import { musicCarouselleDummyData } from "../../data/data";
-import useWindowDimensions from "../../reusableFunctions/Functions";
+import { useEffect } from "react";
+// import { musicCarouselleDummyData } from "../../data/data";
+// import useWindowDimensions from "../../reusableFunctions/Functions";
 import { useNavigate } from "react-router-dom";
 import {
   BsPlayBtn
 } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/apiCalls";
 
 const Products = ({ item }) => {
-  const { height, width } = useWindowDimensions();
+  // const { height, width } = useWindowDimensions();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
 
-
+  useEffect(() => {
+    getProducts(dispatch);
+  }, [dispatch]);
 
 
   let path = "";
   const handleClick = (item) => {
-    path = "/products/" + item.id;
+    path = "/products/" + item._id;
     navigate(path);
   };
 
@@ -25,7 +31,7 @@ const Products = ({ item }) => {
       <SectionTitle>   Alle Våre Produkter</SectionTitle>
 
       <ProductListContainer>
-        {musicCarouselleDummyData.map((prod, index) => (
+        {products.map((prod, index) => (
           < ProductContainer key={index}>
             <Title>{prod.title}</Title>
             <Image src={prod.img} alt={index} />

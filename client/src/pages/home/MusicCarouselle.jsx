@@ -12,19 +12,22 @@ import {
 import { useState, useEffect } from "react";
 import useWindowDimensions from "../../reusableFunctions/Functions";
 import { useNavigate } from "react-router-dom";
+import { getProducts } from "../../redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const MusicCarouselle = () => {
+  const dispatch = useDispatch();
   const { height, width } = useWindowDimensions();
   const [slideItem, setSlideItem] = useState({ id: 1, item: {} });
+  const products = useSelector((state) => state.product.products);
   const navigate = useNavigate();
   let path = "";
   const playButtonColor = "white";
   const hoverColor = "#767676";
 
   const handleClick = (item) => {
-    path = "/products/" + item.id;
-    // console.log(item.id);
-    // console.log(path);
+    path = "/products/" + item._id;
     navigate(path);
   };
 
@@ -48,11 +51,55 @@ const MusicCarouselle = () => {
     }
   };
 
+
+  useEffect(() => {
+    getProducts(dispatch);
+  }, [dispatch]);
+  console.log(products)
+
+  const size = 3;
+  const items = products.slice(0, size)
+
+
   return (
     <Container id="beats">
       <Title>Våre Beats</Title>
 
+
+
       <ImageBoxContainer>
+        {items.map(prod => (
+          <ImageBox opacity="1" hoverColor={hoverColor}>
+            <Image
+              padding="10em 8em"
+              img={prod.img}
+            ></Image>
+            <Buttons>
+              <Button
+                backgroundcolor="#3E768C"
+                color="white"
+                hover="#558ba0"
+                onClick={() =>
+                  handleClick(prod)
+                }
+              >
+                Velg
+              </Button>
+              <BsPlayBtn
+                color={playButtonColor}
+                fontSize="3.4em"
+                fontWeight="100"
+
+                onClick={() => {
+                  handlePlaySong(prod)
+                }}
+              />
+            </Buttons>
+          </ImageBox>
+        ))}
+      </ImageBoxContainer>
+
+      {/* <ImageBoxContainer>
         {width > 800 && (
           <AiOutlineArrowLeft
             fontSize="8em"
@@ -214,7 +261,7 @@ const MusicCarouselle = () => {
             />
           )}
         </ArrowContainer>
-      </ImageBoxContainer>
+      </ImageBoxContainer> */}
     </Container>
   );
 };
@@ -259,7 +306,6 @@ const ImageBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: ${(props) => props.padding};
   opacity: ${(props) => props.opacity};
   border-radius: 1em;
   margin: 0 0.6em;
@@ -269,7 +315,7 @@ const ImageBox = styled.div`
 
   @media (max-width: 1200px) {
     opacity: 1;
-    padding: 1em 0;
+
   }
 
   &:hover {
@@ -279,17 +325,19 @@ const ImageBox = styled.div`
 
 const Image = styled.div`
   flex: 1;
+  border-radius: 1em 1em 0em 0em;
+
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   padding: ${(props) => props.padding};
-  margin-top: 1em;
   background: url(${(props) => props.img}) no-repeat;
   background-size: cover;
   background-position: 100%;
   width: 100%;
+
   -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.6, transparent), to(white));
 
   &::after {

@@ -17,8 +17,7 @@ const ProductHandler = () => {
     });
     const [productToEditId, setProductToEditId] = useState();
     const dispatch = useDispatch();
-    // const products = useSelector((state) => state.product.products);
-    const [products, setProducts] = useState([]);
+    const products = useSelector((state) => state.product.products);
 
 
     //Get input values
@@ -96,24 +95,13 @@ const ProductHandler = () => {
     const handleEdit = (prod) => {
         setProductToEditId(prod._id)
         console.log(productToEditId);
-
-
     }
 
 
 
-
     useEffect(() => {
-        const getProducts = async () => {
-            try {
-                const res = await publicRequest.get("/products");
-                setProducts(res.data);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        getProducts();
-    }, [products]);
+        getProducts(dispatch);
+    }, [dispatch]);
 
 
     return (
