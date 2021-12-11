@@ -1,0 +1,21 @@
+{
+  "name": "react-madking-fullstack-website",
+  "version": "1.0.0",
+  "description": "Fullstack ecommerce website for selling music.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd client && npm start\" "
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohannesEA/react-madking-fullstack-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohannesEA/react-madking-fullstack-website/issues"
+  },
+  "homepage": "https://github.com/JohannesEA/react-madking-fullstack-website#readme"
+}
