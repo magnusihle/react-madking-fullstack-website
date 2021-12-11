@@ -4,8 +4,8 @@
   "description": "Fullstack ecommerce website for selling music.",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd client && npm run build && npm start\" "
-    
+    "dev": "concurrently \"cd backend && npm start\" \"cd client && npm run build\" ",
+    "install": "(cd backend && npm install) & (cd client && npm install)"
   },
   "repository": {
     "type": "git",
