@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "cd ../client && npm start",
-    "backend": "nodemon index.js",
-    "build": "cd ../client && npm install && npm run build"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
     
   },
   "keywords": [],
