@@ -4,7 +4,7 @@
   "description": "Fullstack ecommerce website for selling music.",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd client && npm start\" ",
+    "start": "concurrently \"cd backend && npm run dev\" \"cd client && npm start\" ",
     "install": "(cd backend && npm install) & (cd client && npm install)"
   },
   "repository": {
