@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Fullstack ecommerce website for selling music.",
   "main": "index.js",
+
+  "engines": {
+    "node": "14.17.5"
+  },
   "scripts": {
-    "start": "concurrently \"cd backend && npm run dev\" \"cd client && npm run build && npm start\" ",
-    "install": "(cd backend && npm install) & (cd client && npm install)"
+    "start": "node backend/index.js",
+    "build": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
