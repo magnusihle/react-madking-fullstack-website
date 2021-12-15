@@ -2,7 +2,7 @@
   "name": "react-madking-fullstack-website",
   "version": "1.0.0",
   "description": "Fullstack ecommerce website for selling music.",
-  "main": "index.js",
+  "main": "./backend/index.js",
 
   "engines": {
     "node": "14.17.5"
