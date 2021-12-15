@@ -31,14 +31,17 @@ app.use("/api/products", productRoute);
 
 
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log("Server is running..");
-});
+
 
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "/client")));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+
+
+app.listen(process.env.PORT || 5000, () => {
+    console.log("Server is running..");
 });

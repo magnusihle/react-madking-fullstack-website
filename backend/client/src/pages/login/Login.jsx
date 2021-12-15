@@ -2,8 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/apiCalls';
-import { useNavigate } from "react-router-dom";
-import { loginFailure, loginSuccess } from "../../redux/userRedux";
+
 
 
 const Login = () => {
@@ -28,7 +27,7 @@ const Login = () => {
         <Button backgroundcolor="#3E768C" color="white" hover="#558ba0" onClick={handleLogin} disabled={isFetching}>
           Log Inn
         </Button>{" "}
-        {error && <Error>Innlogging feilet..</Error>}
+        {!error && <Error>Innlogging feilet..</Error>}
       </LoginContainer>
     </Container>
   );
