@@ -21,7 +21,7 @@ jobs:
       # Go to client 
       - name: Go to Client
         run: |
-        cd ./src/client
+        cd client
       # Install NodeJS
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
