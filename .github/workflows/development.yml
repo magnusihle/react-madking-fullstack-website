@@ -15,12 +15,13 @@ jobs:
 
     # Steps in job
     steps:
-      - name: Go to Client
-        run: |
-        cd ./src/client
       # Get code from repo
       - name: Checkout code
         uses: actions/checkout@v1
+      # Go to client 
+      - name: Go to Client
+        run: |
+        cd ./src/client
       # Install NodeJS
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
