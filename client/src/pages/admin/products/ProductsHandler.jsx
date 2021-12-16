@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, getProducts, deleteProduct, updateProduct } from "../../../redux/apiCalls";
-import { publicRequest } from "../../../requestMethods";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import app from "../../../firebase"
+import styled from "styled-components";
+import app from "../../../firebase";
+import { addProduct, deleteProduct, getProducts } from "../../../redux/apiCalls";
 
 
 const ProductHandler = () => {

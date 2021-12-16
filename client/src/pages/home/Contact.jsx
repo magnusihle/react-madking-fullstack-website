@@ -1,5 +1,5 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { validateRequestMessage } from "../../reusableFunctions/Validations";
 
 
@@ -147,11 +147,11 @@ const ContactForm = styled.form`
   }
 `;
 
-const Label = styled.label`
-  /* align-self: flex-start; */
+/* const Label = styled.label`
+  //align-self: flex-start;
   font-size: 20px;
   color: black;
-`;
+`; */
 
 const Input = styled.input`
   flex: 1;

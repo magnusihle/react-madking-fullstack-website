@@ -1,9 +1,7 @@
-import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import { removeProduct, resetCart } from "../../redux/cartRedux";
-import { useDispatch } from "react-redux";
 
 
 const Order = () => {

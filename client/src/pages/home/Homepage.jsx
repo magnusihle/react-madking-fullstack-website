@@ -1,19 +1,17 @@
+import Fab from "@material-ui/core/Fab";
 import { useState } from "react";
-import styled from "styled-components";
-import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer";
-import Hero from "./Hero";
-import About from "./About";
-import ProcessOfWork from "./ProcessOfWork";
-import MusicCarouselle from "./MusicCarouselle";
-import Contact from "./Contact";
+import { AiOutlineArrowUp } from "react-icons/ai";
 // import Fab from "@material-ui/core/Fab";
 import { Link } from "react-scroll";
+import styled from "styled-components";
+import Footer from "../../components/footer/Footer";
+import Navbar from "../../components/navbar/Navbar";
+import About from "./About";
+import Contact from "./Contact";
+import Hero from "./Hero";
 import "./homepage.css";
-import { AiOutlineArrowUp } from "react-icons/ai";
-import useWindowDimensions from "../../reusableFunctions/Functions";
-import Test from "./Test";
-import Fab from "@material-ui/core/Fab";
+import MusicCarouselle from "./MusicCarouselle";
+import ProcessOfWork from "./ProcessOfWork";
 
 
 const Container = styled.div``;
@@ -21,7 +19,7 @@ const Container = styled.div``;
 const Homepage = () => {
     const [showFab, setFab] = useState(false);
 
-    const { height, width } = useWindowDimensions();
+    //const { height, width } = useWindowDimensions();
 
     const makeFABVisible = () => {
         if (window.scrollY >= 100) {

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import useWindowDimensions from "../../reusableFunctions/Functions";
+import React from "react";
 import { Link } from "react-scroll";
+import styled from "styled-components";
 
 
 const Hero = () => {
-  const { height, width } = useWindowDimensions();
+  //const { height, width } = useWindowDimensions();
 
 
   return (
@@ -147,7 +146,7 @@ const Right = styled.div`
   text-align: center;
 `;
 
-const Text = styled.p`
+/* const Text = styled.p`
   color:  var(--color-5);
   font-weight: 400;
   font-size: 1.1rem;
@@ -161,7 +160,7 @@ const Image = styled.image`
   font-size: 1.1rem;
   padding: 3rem 0;
 
-`;
+`; */
 
 
 

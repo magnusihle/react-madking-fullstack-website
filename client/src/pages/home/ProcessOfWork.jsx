@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-scroll";
 import styled from "styled-components";
 import useWindowDimensions from "../../reusableFunctions/Functions";
-import { Link } from "react-scroll";
 
 
 const ProcessOfWork = () => {
-  const { height, width } = useWindowDimensions();
+  const {  width } = useWindowDimensions();
   const [processText, setProcessText] = useState("Trykk på sirklene");
 
   const handleFirstStepContent = () => {
@@ -102,18 +102,18 @@ transition: all .3s ease;
   }
 `;
 
-const CircleTextContainer = styled.div`
+/* const CircleTextContainer = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-between;
 flex-direction: row;
 background-color: #464646;
-`;
+`; */
 
-const CircleText = styled.p`
+/* const CircleText = styled.p`
 font-size: 1.2rem;
 color: ${props => props.color};
-`;
+`; */
 
 
 
