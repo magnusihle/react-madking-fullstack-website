@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v1
       # Go to client 
       - name: Go to Client
-        working-directory: src/client
+        working-directory: client
         run: |
           ls -la
 
