@@ -1,5 +1,5 @@
-const { findByIdAndDelete } = require("../models/User");
-const User = require("../models/User");
+const { findByIdAndDelete } = require("../models/user");
+const User = require("../models/user");
 const {
     verifyToken,
     verifyTokenAndAuthorization,
