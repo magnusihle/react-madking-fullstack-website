@@ -6,5 +6,6 @@ describe("Cypress", () => {
 
   it("visits the app", () => {
     cy.visit("/");
+    cy.log("Da kjører vi");
   });
 });
