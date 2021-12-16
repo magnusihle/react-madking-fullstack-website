@@ -7,6 +7,10 @@ on:
     branches:
       - dev
 
+defaults:
+  run:
+    working-directory: ./client
+
 # Jobs to carry out
 jobs:
   deploy:
@@ -18,12 +22,6 @@ jobs:
       # Get code from repo
       - name: Checkout code
         uses: actions/checkout@v1
-      # Go to client 
-      - name: Go to Client
-        working-directory: client
-        run: |
-          ls -la
-
       # Install NodeJS
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
@@ -31,7 +29,7 @@ jobs:
           node-version: 12.x
       # Run npm install and build on our code
       - run: npm install
-      - run: npm run build
+      - run: npm run build --if-present
       # Deploy to Netlify using our dev secrets
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
