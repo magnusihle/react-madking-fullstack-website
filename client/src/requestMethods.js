@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://main.d2sc8g95bgiql2.amplifyapp.com/";
+const BASE_URL = "https://react-madking-shop.herokuapp.com/";
 // const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 //   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
 //     .accessToken || "";
