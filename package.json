@@ -10,7 +10,9 @@
   "scripts": {
     "heroku-postbuild": "cd ./client && npm install && npm run build",
     "start": "node ./index.js",
-    "dev": "concurrently \"npm run start\" \" cd ./client && npm start\""
+    "dev": "concurrently \"npm run start\" \" cd ./client && npm start\"",
+    "build-client": "cd ./client && npm start",
+    "install-client": "cd ./client && npm install"
   },
   "keywords": [],
   "author": "",
