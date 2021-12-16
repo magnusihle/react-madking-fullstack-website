@@ -16,7 +16,8 @@ jobs:
     # Steps in job
     steps:
       - name: Go to Client
-        run: cd client
+        run: | 
+        cd client
       # Get code from repo
       - name: Checkout code
         uses: actions/checkout@v1
